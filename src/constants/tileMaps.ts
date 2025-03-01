@@ -11,16 +11,4 @@ export const tileMaps: Record<string, TileMap> = {
 		width: 28,
 		gap: 1,
 	},
-	palletTown: {
-		src: "url('/tilesets/palletTown.png')",
-		height: 20,
-		width: 24,
-		gap: 0,
-	},
-	oaksLab: {
-		src: "url('/tilesets/oaksLab.png')",
-		height: 14,
-		width: 13,
-		gap: 0,
-	},
 };

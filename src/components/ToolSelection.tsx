@@ -1,5 +1,5 @@
 import { JSX } from 'react';
-import { TileIdentifier } from '../App';
+import { TileIdentifier, tileSize } from '../App';
 import { tileMaps } from '../constants/tileMaps';
 import { TileMapViewer } from './TileMapViewer';
 
@@ -17,10 +17,10 @@ export const ToolSelection = ({
 				{selected ? (
 					<div
 						style={{
-							scale: 4,
-							height: 16,
-							width: 16,
-							background: `${selected.src} ${selected.xOffset}px ${selected.yOffset}px`,
+							scale: 2,
+							height: tileSize,
+							width: tileSize,
+							background: `url(/tilesets/fireRedBase.png) ${selected.xOffset}px ${selected.yOffset}px`,
 						}}
 					></div>
 				) : (

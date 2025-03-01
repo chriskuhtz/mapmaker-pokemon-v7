@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { GameMap, TileIdentifier } from '../App';
 
-const initialBaseLayer: TileIdentifier[][] = [
-	[{ src: "url('/tilesets/fireRedBase.png')", yOffset: -1, xOffset: -1 }],
-];
+const initialBaseLayer: TileIdentifier[][] = [[{ yOffset: -1, xOffset: -1 }]];
 
 const init: GameMap = {
 	baseLayer: initialBaseLayer,
@@ -32,13 +30,13 @@ export const useMapEditor = ({
 			],
 			obstacleLayer: [
 				...newMap.obstacleLayer,
-				Array.from({ length: newMap.obstacleLayer.length }).map(
+				Array.from({ length: newMap.obstacleLayer[0].length }).map(
 					() => undefined
 				),
 			],
 			decorationLayer: [
 				...newMap.decorationLayer,
-				Array.from({ length: newMap.decorationLayer.length }).map(
+				Array.from({ length: newMap.decorationLayer[0].length }).map(
 					() => undefined
 				),
 			],

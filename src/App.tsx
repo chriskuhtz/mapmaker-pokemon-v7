@@ -3,6 +3,7 @@ import './App.css';
 import { MapEditor } from './components/MapEditor';
 import { ToolSelection } from './components/ToolSelection';
 
+export const tileSize = 16;
 export interface GameMap {
 	baseLayer: TileIdentifier[][];
 	decorationLayer: (TileIdentifier | undefined)[][];
@@ -10,7 +11,6 @@ export interface GameMap {
 }
 
 export interface TileIdentifier {
-	src: string;
 	yOffset: number;
 	xOffset: number;
 }
