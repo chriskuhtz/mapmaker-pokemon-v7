@@ -1,5 +1,5 @@
-import { TileIdentifier, tileSize } from '../App';
 import { TileMap } from '../constants/tileMaps';
+import { TileIdentifier, tileSize } from '../shared/interfaces';
 
 export const TileMapViewer = ({
 	name,

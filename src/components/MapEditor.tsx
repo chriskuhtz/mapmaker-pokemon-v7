@@ -39,6 +39,15 @@ export const MapEditor = ({
 					layerName="Obstacle"
 				/>
 				<CombinedCanvas newMap={newMap} />
+				<a
+					href={
+						'data:text/json;charset=utf-8,' +
+						encodeURIComponent(JSON.stringify(newMap))
+					}
+					download={`map_${new Date().getTime()}`}
+				>
+					Download
+				</a>
 			</div>
 		</div>
 	);

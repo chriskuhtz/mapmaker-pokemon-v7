@@ -1,4 +1,4 @@
-import { TileIdentifier, tileSize } from '../App';
+import { TileIdentifier, tileSize } from '../shared/interfaces';
 
 export const LayerEditor = ({
 	layerName,
