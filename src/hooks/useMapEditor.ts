@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { TileIdentifier, GameMap } from '../App';
+import { GameMap, TileIdentifier } from '../App';
 
 const initialBaseLayer: TileIdentifier[][] = [
-	[{ src: "url('/tilesets/fireRedBase.png')", yOffset: 1, xOffset: 1 }],
+	[{ src: "url('/tilesets/fireRedBase.png')", yOffset: -1, xOffset: -1 }],
 ];
 
 const init: GameMap = {
 	baseLayer: initialBaseLayer,
-	obstacleLayer: [[]],
-	decorationLayer: [[]],
+	obstacleLayer: [[undefined]],
+	decorationLayer: [[undefined]],
 };
 
 export const useMapEditor = ({
