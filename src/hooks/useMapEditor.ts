@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { GameMap, TileIdentifier, Tool } from '../App';
+import { Tool } from '../App';
+import { TileIdentifier, GameMap } from '../shared/interfaces';
 
 const initialBaseLayer: TileIdentifier[][] = [[{ yOffset: -1, xOffset: -1 }]];
 
@@ -43,7 +44,6 @@ export const useMapEditor = ({ tool }: { tool: Tool | undefined }) => {
 		j: number,
 		layer: 'Base' | 'Obstacle' | 'Decoration'
 	) => {
-		console.log(tool);
 		if (!tool) {
 			return;
 		}

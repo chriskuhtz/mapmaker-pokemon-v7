@@ -1,7 +1,8 @@
 import { JSX } from 'react';
-import { tileSize, Tool } from '../App';
+import { Tool } from '../App';
 import { tileMaps } from '../constants/tileMaps';
 import { TileMapViewer } from './TileMapViewer';
+import { tileSize } from '../shared/interfaces';
 
 export const ToolSelection = ({
 	selected,
@@ -13,7 +14,7 @@ export const ToolSelection = ({
 	return (
 		<div>
 			<h2 style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-				Selected:{' '}
+				Selected Tool:{' '}
 				{selected?.type === 'tileplacer' && (
 					<div
 						style={{
@@ -25,7 +26,7 @@ export const ToolSelection = ({
 					></div>
 				)}
 				{selected?.type === 'eraser' && 'Eraser'}
-				{!selected && 'Select a Tool'}
+				{!selected && '-'}
 			</h2>
 			<button
 				style={{ margin: '1rem', padding: '1rem' }}
@@ -33,14 +34,16 @@ export const ToolSelection = ({
 			>
 				Eraser
 			</button>
-			{Object.entries(tileMaps).map(([name, t]) => (
-				<TileMapViewer
-					name={name}
-					t={t}
-					key={name}
-					onClick={(tile) => setSelected({ type: 'tileplacer', tile })}
-				/>
-			))}
+			<div style={{ maxHeight: '80dvh', overflowY: 'scroll' }}>
+				{Object.entries(tileMaps).map(([name, t]) => (
+					<TileMapViewer
+						name={name}
+						t={t}
+						key={name}
+						onClick={(tile) => setSelected({ type: 'tileplacer', tile })}
+					/>
+				))}
+			</div>
 		</div>
 	);
 };
