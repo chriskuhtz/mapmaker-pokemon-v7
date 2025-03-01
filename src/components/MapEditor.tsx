@@ -1,20 +1,17 @@
-import { JSX, useState } from 'react';
+import { JSX } from 'react';
 import { TileIdentifier } from '../App';
-
-const initialMap: TileIdentifier[][] = [
-	[{ src: "url('/tilesets/fireRedBase.png')", yOffset: 1, xOffset: 1 }],
-];
+import { useMapEditor } from '../hooks/useMapEditor';
 
 export const MapEditor = ({
 	selected,
 }: {
 	selected: TileIdentifier | undefined;
 }): JSX.Element => {
-	const [newMap, setNewMap] = useState<TileIdentifier[][]>(initialMap);
+	const { newMap, addColumn, addRow, changeTile } = useMapEditor({ selected });
 	return (
 		<div>
 			<h2>
-				My Map {newMap.length}/{newMap[0].length}
+				My Map {newMap.baseLayer.length}/{newMap.baseLayer[0].length}
 			</h2>
 			<div
 				style={{
@@ -29,31 +26,19 @@ export const MapEditor = ({
 						width: 'min-content',
 						display: 'grid',
 						justifyItems: 'flex-start',
-						gridTemplateColumns: `${Array.from({ length: newMap[0].length })
+						gridTemplateColumns: `${Array.from({
+							length: newMap.baseLayer[0].length,
+						})
 							.map(() => '1fr')
 							.join(' ')}`,
 						gap: '2px',
 					}}
 				>
-					{newMap.map((row, i) =>
+					{newMap.baseLayer.map((row, i) =>
 						row.map(({ src, yOffset, xOffset }, j) => {
 							return (
 								<div
-									onClick={() => {
-										if (!selected) {
-											return;
-										}
-										setNewMap((newMap) =>
-											newMap.map((row, h) => {
-												return row.map((el, k) => {
-													if (h === i && k === j) {
-														return selected;
-													}
-													return el;
-												});
-											})
-										);
-									}}
+									onClick={() => changeTile(i, j, 'Base')}
 									key={'newMap' + i + j}
 									style={{
 										height: 16,
@@ -65,22 +50,10 @@ export const MapEditor = ({
 						})
 					)}
 				</div>
-				<div
-					style={{ border: '1px solid white' }}
-					onClick={() =>
-						setNewMap((newMap) =>
-							newMap.map((row) => [...row, row[row.length - 1]])
-						)
-					}
-				>
+				<div style={{ border: '1px solid white' }} onClick={addColumn}>
 					add Column
 				</div>
-				<div
-					style={{ border: '1px solid white' }}
-					onClick={() =>
-						setNewMap((newMap) => [...newMap, newMap[newMap.length - 1]])
-					}
-				>
+				<div style={{ border: '1px solid white' }} onClick={addRow}>
 					add Row
 				</div>
 			</div>

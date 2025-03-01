@@ -4,9 +4,9 @@ import { MapEditor } from './components/MapEditor';
 import { ToolSelection } from './components/ToolSelection';
 
 export interface GameMap {
-	baselayer: TileIdentifier[][];
+	baseLayer: TileIdentifier[][];
 	decorationLayer: (TileIdentifier | undefined)[][];
-	passabilityLayer: number[][];
+	obstacleLayer: (TileIdentifier | undefined)[][];
 }
 
 export interface TileIdentifier {
