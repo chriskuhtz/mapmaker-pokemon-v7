@@ -78,7 +78,7 @@ export const LayerDisplay = ({
 					return (
 						<div
 							onClick={() => changeTile(i, j, layerName)}
-							key={'newMap' + i + j}
+							key={'newMap' + Math.random()}
 							style={{
 								height: tileSize,
 								width: tileSize,

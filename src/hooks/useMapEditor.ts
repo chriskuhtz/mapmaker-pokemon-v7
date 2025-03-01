@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GameMap, TileIdentifier } from '../App';
+import { GameMap, TileIdentifier, Tool } from '../App';
 
 const initialBaseLayer: TileIdentifier[][] = [[{ yOffset: -1, xOffset: -1 }]];
 
@@ -9,11 +9,7 @@ const init: GameMap = {
 	decorationLayer: [[undefined]],
 };
 
-export const useMapEditor = ({
-	selected,
-}: {
-	selected: TileIdentifier | undefined;
-}) => {
+export const useMapEditor = ({ tool }: { tool: Tool | undefined }) => {
 	const [newMap, setNewMap] = useState<GameMap>(init);
 
 	const addColumn = () =>
@@ -47,16 +43,18 @@ export const useMapEditor = ({
 		j: number,
 		layer: 'Base' | 'Obstacle' | 'Decoration'
 	) => {
-		if (!selected) {
+		console.log(tool);
+		if (!tool) {
 			return;
 		}
+
 		setNewMap((newMap) => ({
 			baseLayer:
 				layer === 'Base'
 					? newMap.baseLayer.map((row, h) => {
 							return row.map((el, k) => {
 								if (h === i && k === j) {
-									return selected;
+									return tool.type === 'eraser' ? el : tool.tile;
 								}
 								return el;
 							});
@@ -67,7 +65,7 @@ export const useMapEditor = ({
 					? newMap.obstacleLayer.map((row, h) => {
 							return row.map((el, k) => {
 								if (h === i && k === j) {
-									return selected;
+									return tool.type === 'eraser' ? undefined : tool.tile;
 								}
 								return el;
 							});
@@ -78,7 +76,7 @@ export const useMapEditor = ({
 					? newMap.decorationLayer.map((row, h) => {
 							return row.map((el, k) => {
 								if (h === i && k === j) {
-									return selected;
+									return tool.type === 'eraser' ? undefined : tool.tile;
 								}
 								return el;
 							});

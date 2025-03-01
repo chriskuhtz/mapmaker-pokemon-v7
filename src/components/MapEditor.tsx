@@ -1,14 +1,14 @@
 import { JSX, useEffect } from 'react';
-import { GameMap, TileIdentifier, tileSize } from '../App';
+import { GameMap, tileSize, Tool } from '../App';
 import { useMapEditor } from '../hooks/useMapEditor';
 import { LayerEditor } from './LayerEditor';
 
 export const MapEditor = ({
-	selected,
+	tool,
 }: {
-	selected: TileIdentifier | undefined;
+	tool: Tool | undefined;
 }): JSX.Element => {
-	const { newMap, addColumn, addRow, changeTile } = useMapEditor({ selected });
+	const { newMap, addColumn, addRow, changeTile } = useMapEditor({ tool });
 	return (
 		<div>
 			<h2>

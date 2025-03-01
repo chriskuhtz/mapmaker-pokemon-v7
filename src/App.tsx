@@ -10,16 +10,25 @@ export interface GameMap {
 	obstacleLayer: (TileIdentifier | undefined)[][];
 }
 
+export interface TilePlacer {
+	type: 'tileplacer';
+	tile: TileIdentifier;
+}
+export interface Eraser {
+	type: 'eraser';
+}
+export type Tool = TilePlacer | Eraser;
 export interface TileIdentifier {
 	yOffset: number;
 	xOffset: number;
 }
 export const App = () => {
-	const [selected, setSelected] = useState<TileIdentifier | undefined>();
+	const [selected, setSelected] = useState<Tool | undefined>();
 
 	return (
 		<div style={{ display: 'grid', gridTemplateColumns: '5fr 1fr' }}>
-			<MapEditor selected={selected} />
+			<MapEditor tool={selected} />
+
 			<ToolSelection selected={selected} setSelected={setSelected} />
 		</div>
 	);
